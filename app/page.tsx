@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link';
+import { PROCEDURES } from './data/procedures';
 
 export default function Home() {
   return (
@@ -23,9 +24,19 @@ export default function Home() {
           </Link>
         </div>
     </section>
-    <section className="min-h-[85vh] bg-brand-cream">
-      <div>
-        Tutaj będzie coś
+    <section className="bg-brand-cream max-w-6xl mx-auto px-4 py-16 lg:py-24">
+      <h2>Najpopularniejsze zabiegi</h2>
+      <h3>Wybierz sprawdzony i skuteczny zabieg</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {PROCEDURES.slice(0, 3).map((procedure) => (
+          <article className="bg-brand-cream rounded-2xl p-6 border border-brand-dark/10 flex flex-col justify-between">
+          <h3>{procedure.name}</h3>
+          <p>{procedure.shortDescription}</p>
+          <p>{procedure.price} zł</p>
+          <p>czas zabiegu: {procedure.duration} min</p>
+          </article>
+        ))}
+        <Link href="/procedures">Zobacz pełną ofertę</Link>
       </div>
     </section>
     </>
